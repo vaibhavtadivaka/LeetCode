@@ -1,0 +1,29 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] result=new int[2];
+        int sum;
+        int s=0;
+        int e=nums.length-1;
+        int[][] arr = new int[nums.length][2];
+        for(int i=0;i<nums.length;i++){
+            arr[i][0]=nums[i];
+            arr[i][1]=i;
+        }
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+        while(s<e){
+            sum=arr[s][0]+arr[e][0];
+            if(sum==target){
+                result[0]=arr[s][1];
+                result[1]=arr[e][1];
+                break;
+            }
+            else if(sum>target){
+                e--;
+            }
+            else{
+                s++;
+            }
+        }
+        return result;
+    }
+}

@@ -1,0 +1,21 @@
+class Solution {
+    public int mySqrt(int x) {
+        if (x == 0) {
+            return 0;
+        }
+        int low = 1;
+        int high = x;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            long a = (long) mid * mid;
+            if (a == x) {
+                return mid;
+            } else if (a < x) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return high;
+    }
+}
