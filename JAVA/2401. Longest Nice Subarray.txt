@@ -1,0 +1,17 @@
+class Solution {
+    public int longestNiceSubarray(int[] nums) {
+        int n = nums.length;
+        int left = 0;
+        int maxLen = 0;
+        int cur = 0;
+        for(int right = 0; right < n; right++){
+            while((cur & nums[right]) != 0){
+                cur ^= nums[left];
+                left++;
+            }
+            cur |= nums[right];
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;  
+    }
+}
