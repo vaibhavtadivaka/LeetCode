@@ -1,0 +1,33 @@
+class Solution {
+     public static int kadane(int[] arr) {
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
+    }
+    public static int minSubarraySum(int[] arr) {
+        int minSum = arr[0];
+        int currentSum = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.min(arr[i], currentSum + arr[i]);
+            minSum = Math.min(minSum, currentSum);
+        }
+        return minSum;
+    }
+    public static int maxSubarraySumCircular(int[] arr) {
+        int maxKadane = kadane(arr);
+        int totalSum = 0;
+        for (int num : arr) {
+            totalSum += num;
+        }
+        int minSubarray = minSubarraySum(arr);
+        if (totalSum == minSubarray) {
+            return maxKadane;
+        }
+        int maxCircular = totalSum - minSubarray;
+        return Math.max(maxKadane, maxCircular);
+    }
+}
