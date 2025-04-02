@@ -1,0 +1,12 @@
+class Solution {
+    public long maximumTripletValue(int[] nums) {
+        long maxValue = 0;
+        int maxElement = 0, maxDiff = 0;
+        for (int num : nums) {
+            maxValue = Math.max(maxValue, (long) maxDiff * num);
+            maxDiff = Math.max(maxDiff, maxElement - num);
+            maxElement = Math.max(maxElement, num);
+        }
+        return maxValue;
+    }
+}
