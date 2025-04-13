@@ -1,0 +1,24 @@
+class Solution {
+    public String smallestPalindrome(String s) {
+        if (s.length() == 1) return s;
+        int arr[] = new int [26];
+        StringBuilder str = new StringBuilder();
+        String a = "";
+        for (int i = 0; i < s.length(); i++){
+            arr[s.charAt(i) - 'a']++;
+        }
+        for(int i = 0; i < 26; i++){
+            if(arr[i] % 2 == 1){
+                a = String.valueOf((char) ('a' + i));
+            }
+            for(int j = 0; j < arr[i] / 2; j++){
+                str.append((char) ('a' + i));
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(str);
+        if(!a.isEmpty()) result.append(a);
+        result.append(str.reverse());
+        return result.toString();
+    }
+}
