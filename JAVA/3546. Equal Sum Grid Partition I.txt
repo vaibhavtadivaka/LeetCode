@@ -1,0 +1,38 @@
+class Solution {
+    public boolean canPartitionGrid(int[][] grid) {
+        int r = grid.length;
+        int c = grid[0].length;
+        long totalSum = 0;
+        for(int[] i : grid){
+            for (int j : i){
+                totalSum += j;
+            }
+        }
+        if(totalSum % 2 != 0) {
+            return false;
+        }
+        long sai = 0;
+        for(int i = 0; i < r - 1; i++){
+            for(int j = 0; j < c; j++){
+                sai += grid[i][j];
+            }
+            if(sai * 2 == totalSum){
+                return true;
+            }
+        }
+        long[] vaibhav = new long[c];
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c; j++){
+                vaibhav[j] += grid[i][j];
+            }
+        }
+        long vai = 0;
+        for(int j = 0; j < c - 1; j++){
+            vai += vaibhav[j];
+            if(vai * 2 == totalSum){
+                return true;
+            }
+        }
+        return false;
+    }
+}
