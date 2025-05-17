@@ -1,0 +1,11 @@
+class Solution {
+    public double averageWaitingTime(int[][] customers) {
+        long curTime = 0, totalWait = 0;
+        for (int[] customer : customers) {
+            int arrival = customer[0], cookTime = customer[1];
+            curTime = Math.max(curTime, arrival) + cookTime;
+            totalWait += curTime - arrival;
+        }
+        return (double) totalWait / customers.length;
+    }
+}
